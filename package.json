@@ -1,0 +1,30 @@
+{
+  "name": "reactive-snake",
+  "version": "1.0.0",
+  "description": "RxJS game",
+  "main": "webpack.config.js",
+  "author": "Gregor Menih <gregor@menih.si>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build:dev": "webpack --progress -p --env=dev",
+    "build:prod": "webpack --progress -p --env=prod",
+    "build": "yarn build:dev"
+  },
+  "devDependencies": {
+    "css-loader": "1.0.0",
+    "html-webpack-plugin": "3.2.0",
+    "node-sass": "4.9.2",
+    "sass-loader": "7.1.0",
+    "style-loader": "0.21.0",
+    "ts-loader": "4.4.2",
+    "typescript": "3.0.1",
+    "webpack": "4.16.4",
+    "webpack-cli": "3.1.0",
+    "webpack-dev-server": "3.1.5"
+  },
+  "dependencies": {
+    "rxjs": "6.2.2"
+  }
+}
