@@ -1,6 +1,9 @@
-import {Observable, fromEvent, merge} from 'rxjs';
-import {filter} from 'rxjs/operators';
+import {Observable, fromEvent, merge, Subscription} from 'rxjs';
+import {filter, tap} from 'rxjs/operators';
 
+/**
+ * A small class which exports methods that allow subscribing to different keyboard events
+ */
 export class Keyboard {
 
     private onKeyUp: Observable<KeyboardEvent>;
@@ -9,7 +12,7 @@ export class Keyboard {
     constructor (src: HTMLElement | HTMLDocument) {
         this.onKeyUp = fromEvent<KeyboardEvent>(src, "keyup");
         this.onKeyDown = fromEvent<KeyboardEvent>(src, "keydown");
-       
+
     }
 
     onRelease (keyCode: number): Observable<KeyboardEvent>;
@@ -29,7 +32,7 @@ export class Keyboard {
     onPress (keyName: string): Observable<KeyboardEvent>;
     onPress (keyCode: number | string): Observable<KeyboardEvent> {
         return this.onKeyDown.pipe(
-            filter((event: KeyboardEvent) => !event.repeat),
+            // filter((event: KeyboardEvent) => !event.repeat),
             filter((event: KeyboardEvent) => {
                 if (typeof keyCode === 'string') {
                     return event.key.toLowerCase() === keyCode.toLowerCase();
@@ -40,7 +43,6 @@ export class Keyboard {
     }
 
     onMulti (...args: any[]): Observable<KeyboardEvent> {
-        console.log(args);
         return merge(
             ...args.map((code: string | number) => this.onPress(<any> code)),
         );

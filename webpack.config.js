@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 /** @type {webpack.Configuration} */
 module.exports = {
     entry: './src/index.ts',
+    mode: 'development',
     resolve: {
         extensions: ['.js', '.ts'],
     },
